@@ -71,13 +71,12 @@ export const SecretEasterEggs: React.FC<SecretEasterEggsProps> = ({
     }, 7000);
   };
 
-  // Handle Daily Love Note
   const dailyNotes = [
-    "Today's thought: In case no one reminded you this morning, your smile is Walter's favourite thing in the entire world.",
-    "A gentle reminder: You are loved fiercely, chosen intentionally, and appreciated beyond words.",
-    "Random thought: Every room you walk into gets a little warmer and a lot brighter just by having you in it.",
-    "Whisper from my heart: I'm proud of you. Even on quiet days, you are doing great.",
-    "Fun fact: You still give me those exact same butterflies as the first day we spoke.",
+    `Today's thought: In case no one reminded you this morning, your smile is Walter's favourite thing in the entire world, Mai Kuku.`,
+    `A gentle reminder for Tino: You are loved fiercely, chosen intentionally, and appreciated beyond words, Mai Future.`,
+    `Random thought: Every room you walk into gets a little warmer and a lot brighter just by having you in it, Mai Kamanga.`,
+    `Whisper from Walter's heart: I'm proud of you, Tino. Even on quiet days, you are doing great. Moyo wangu!`,
+    `Fun fact: You still give me those exact same butterflies as the first day we spoke, my sweet Mai Kuku.`,
   ];
 
   const handleShowDailyNote = () => {
@@ -302,7 +301,7 @@ export const SecretEasterEggs: React.FC<SecretEasterEggsProps> = ({
                 Officially the Owner of Walter's Heart ❤️
               </h4>
               <p className="text-xs text-rose-200/90 leading-relaxed font-serif-romantic italic mb-4">
-                "Be it known to the stars and all of creation: {personalization.herName} holds the exclusive, permanent, and unconditional title to every heartbeat of {personalization.hisName}."
+                "Be it known to the stars and all of creation: {personalization.herName} ({personalization.herNickname}) holds the exclusive, permanent, and unconditional title to every heartbeat of {personalization.hisName} since 20 February 2023 across every single mile. Moyo Wangu ❤️"
               </p>
               <div className="text-xs text-amber-300 font-handwriting text-lg">
                 Signed with endless adoration, {personalization.hisName}

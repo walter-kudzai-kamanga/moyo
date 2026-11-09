@@ -32,7 +32,10 @@ export const FutureSection: React.FC<FutureSectionProps> = ({
     const saved = safeStorage.getItem('lp_bucket_list');
     if (saved) {
       try {
-        return JSON.parse(saved);
+        const parsed = JSON.parse(saved);
+        if (parsed && parsed.some((i: any) => i.id === 'b-ldr-1')) {
+          return parsed;
+        }
       } catch (e) {
         return bucketListItems;
       }
