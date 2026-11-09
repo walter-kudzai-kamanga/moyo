@@ -1,6 +1,5 @@
 /**
- * Web Audio API based romantic ambient music and sound synthesizer
- * Provides zero-external-dependency soothing romantic chords, sound effects, and voice playback.
+ * Plays Nyasha David — Ndoda, plus sound effects and voice playback.
  */
 
 class RomanticAudioController {
@@ -8,12 +7,12 @@ class RomanticAudioController {
   private isMusicPlaying = false;
   private musicVolume = 0.35;
   private sfxVolume = 0.5;
-  private loopInterval: any = null;
   private musicGain: GainNode | null = null;
   private masterGain: GainNode | null = null;
   private isMuted = false;
-  private currentStep = 0;
-  private activeVoices: AudioNode[] = [];
+  private trackFrame: HTMLIFrameElement | null = null;
+  // Nyasha David — Ndoda (Official Audio)
+  private readonly trackId = 'cHkEfoeGIKk';
 
   constructor() {
     // AudioContext will be initialized on first user gesture
@@ -48,6 +47,7 @@ class RomanticAudioController {
     if (this.masterGain && this.ctx) {
       this.masterGain.gain.setTargetAtTime(this.isMuted ? 0 : 1, this.ctx.currentTime, 0.05);
     }
+    this.postTrack(this.isMuted ? 'mute' : 'unMute');
     return this.isMuted;
   }
 
@@ -64,80 +64,57 @@ class RomanticAudioController {
     if (this.musicGain && this.ctx) {
       this.musicGain.gain.setTargetAtTime(this.musicVolume, this.ctx.currentTime, 0.05);
     }
+    this.postTrack('setVolume', [Math.round(this.musicVolume * 100)]);
   }
 
-  // Romantic ambient chord progressions (Fmaj7 - Cmaj7 - Dm7 - Am7)
-  private playRomanticChord() {
-    if (!this.ctx || !this.musicGain || !this.isMusicPlaying) return;
+  private postTrack(func: string, args: unknown[] = []) {
+    this.trackFrame?.contentWindow?.postMessage(
+      JSON.stringify({ event: 'command', func, args }),
+      '*'
+    );
+  }
 
-    // Frequencies for soothing romantic progression (Hz)
-    // 0: Fmaj9 (F3, A3, C4, E4, G4)
-    // 1: Cmaj7 (C3, G3, B3, E4, G4)
-    // 2: Dm9 (D3, F3, A3, C4, E4)
-    // 3: Am7 / G (A2, E3, G3, C4, E4)
-    const progressions = [
-      [174.61, 220.00, 261.63, 329.63, 392.00], // Fmaj9
-      [130.81, 196.00, 246.94, 329.63, 392.00], // Cmaj7
-      [146.83, 174.61, 220.00, 261.63, 329.63], // Dm9
-      [110.00, 164.81, 196.00, 261.63, 329.63], // Am7
-    ];
-
-    const chord = progressions[this.currentStep % progressions.length];
-    this.currentStep++;
-
-    const now = this.ctx.currentTime;
-    const duration = 4.8; // seconds per chord
-
-    chord.forEach((freq, idx) => {
-      if (!this.ctx || !this.musicGain) return;
-      const osc = this.ctx.createOscillator();
-      const gain = this.ctx.createGain();
-      const filter = this.ctx.createBiquadFilter();
-
-      // Soft warm sine/triangle blend
-      osc.type = idx % 2 === 0 ? 'sine' : 'triangle';
-      osc.frequency.setValueAtTime(freq, now);
-
-      // Low pass filter for warm, dreamy analog piano-pad feel
-      filter.type = 'lowpass';
-      filter.frequency.setValueAtTime(450 + idx * 80, now);
-      filter.Q.setValueAtTime(1.0, now);
-
-      // Gentle attack and release envelope
-      const baseGain = 0.045 / chord.length;
-      gain.gain.setValueAtTime(0.0001, now);
-      gain.gain.exponentialRampToValueAtTime(baseGain, now + 1.2 + idx * 0.1);
-      gain.gain.exponentialRampToValueAtTime(0.0001, now + duration);
-
-      osc.connect(filter);
-      filter.connect(gain);
-      gain.connect(this.musicGain);
-
-      osc.start(now + idx * 0.08);
-      osc.stop(now + duration + 0.1);
-
-      this.activeVoices.push(osc);
+  private mountTrack() {
+    this.unmountTrack();
+    const frame = document.createElement('iframe');
+    frame.title = 'Nyasha David - Ndoda';
+    frame.allow = 'autoplay; encrypted-media';
+    frame.referrerPolicy = 'strict-origin-when-cross-origin';
+    frame.style.cssText =
+      'position:fixed;width:1px;height:1px;left:-9999px;top:0;border:0;opacity:0;pointer-events:none';
+    const params = new URLSearchParams({
+      autoplay: '1',
+      loop: '1',
+      playlist: this.trackId,
+      controls: '0',
+      rel: '0',
+      modestbranding: '1',
+      playsinline: '1',
+      enablejsapi: '1',
     });
+    if (this.isMuted) params.set('mute', '1');
+    frame.src = `https://www.youtube.com/embed/${this.trackId}?${params.toString()}`;
+    document.body.appendChild(frame);
+    this.trackFrame = frame;
+  }
+
+  private unmountTrack() {
+    if (!this.trackFrame) return;
+    this.trackFrame.src = 'about:blank';
+    this.trackFrame.remove();
+    this.trackFrame = null;
   }
 
   public startRomanticMusic() {
     this.initContext();
-    if (this.isMusicPlaying) return;
+    if (this.isMusicPlaying && this.trackFrame) return;
     this.isMusicPlaying = true;
-    this.playRomanticChord();
-    this.loopInterval = setInterval(() => {
-      if (this.isMusicPlaying) {
-        this.playRomanticChord();
-      }
-    }, 4500);
+    this.mountTrack();
   }
 
   public stopRomanticMusic() {
     this.isMusicPlaying = false;
-    if (this.loopInterval) {
-      clearInterval(this.loopInterval);
-      this.loopInterval = null;
-    }
+    this.unmountTrack();
   }
 
   public toggleRomanticMusic(): boolean {

@@ -52,20 +52,18 @@ export const LoveCounterSection: React.FC<LoveCounterSectionProps> = ({
 
       setElapsed({ days: dSince, hours: hSince, minutes: mSince, seconds: sSince });
 
-      // Next Date Countdown
-      if (personalization.nextDate) {
-        const nextDateTarget = new Date(personalization.nextDate).getTime();
-        const diffUntil = nextDateTarget - now;
+      // Countdown to 2 September 2027, local midnight
+      const nextDateTarget = new Date(2027, 8, 2, 0, 0, 0, 0).getTime();
+      const diffUntil = nextDateTarget - now;
 
-        if (diffUntil > 0) {
-          const dUntil = Math.floor(diffUntil / (1000 * 60 * 60 * 24));
-          const hUntil = Math.floor((diffUntil / (1000 * 60 * 60)) % 24);
-          const mUntil = Math.floor((diffUntil / 1000 / 60) % 60);
-          const sUntil = Math.floor((diffUntil / 1000) % 60);
-          setCountdown({ days: dUntil, hours: hUntil, minutes: mUntil, seconds: sUntil, isPast: false });
-        } else {
-          setCountdown({ days: 0, hours: 0, minutes: 0, seconds: 0, isPast: true });
-        }
+      if (diffUntil > 0) {
+        const dUntil = Math.floor(diffUntil / (1000 * 60 * 60 * 24));
+        const hUntil = Math.floor((diffUntil / (1000 * 60 * 60)) % 24);
+        const mUntil = Math.floor((diffUntil / 1000 / 60) % 60);
+        const sUntil = Math.floor((diffUntil / 1000) % 60);
+        setCountdown({ days: dUntil, hours: hUntil, minutes: mUntil, seconds: sUntil, isPast: false });
+      } else {
+        setCountdown({ days: 0, hours: 0, minutes: 0, seconds: 0, isPast: true });
       }
     };
 
@@ -73,7 +71,7 @@ export const LoveCounterSection: React.FC<LoveCounterSectionProps> = ({
     const interval = setInterval(updateCounters, 1000);
 
     return () => clearInterval(interval);
-  }, [personalization.anniversaryDate, personalization.nextDate]);
+  }, [personalization.anniversaryDate]);
 
   return (
     <section className="relative min-h-screen px-4 py-12 max-w-5xl mx-auto select-none flex flex-col justify-center">
@@ -137,8 +135,7 @@ export const LoveCounterSection: React.FC<LoveCounterSectionProps> = ({
       </div>
 
       {/* Second Counter Card: Next Date Countdown */}
-      {personalization.nextDate && (
-        <div className="p-6 sm:p-8 rounded-3xl bg-gradient-to-r from-rose-950/60 via-purple-950/50 to-pink-950/60 border border-rose-400/30 text-center shadow-xl max-w-2xl mx-auto mb-12">
+      <div className="p-6 sm:p-8 rounded-3xl bg-gradient-to-r from-rose-950/60 via-purple-950/50 to-pink-950/60 border border-rose-400/30 text-center shadow-xl max-w-2xl mx-auto mb-12">
           <div className="inline-flex items-center gap-1.5 text-xs text-rose-300 uppercase tracking-widest font-mono mb-2">
             <CalendarHeart className="w-4 h-4 text-pink-400" />
             <span>Time Until Our Next Date</span>
@@ -172,7 +169,6 @@ export const LoveCounterSection: React.FC<LoveCounterSectionProps> = ({
             </p>
           )}
         </div>
-      )}
 
       {/* Footer Navigation CTA */}
       <div className="text-center">

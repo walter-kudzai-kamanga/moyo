@@ -89,7 +89,6 @@ export default function App() {
 
       {/* Top Floating Music Controller & Achievements */}
       <MusicController
-        onOpenSettings={() => setShowSettingsModal(true)}
         onOpenAchievements={() => setShowAchievementsModal(true)}
         achievementCount={Object.values(achievements).filter(Boolean).length}
         totalAchievements={6}

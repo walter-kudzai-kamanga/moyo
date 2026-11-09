@@ -1,16 +1,14 @@
 import React, { useState, useEffect } from 'react';
-import { Volume2, VolumeX, Music, Settings, Sparkles, Award } from 'lucide-react';
+import { Volume2, VolumeX, Music, Award } from 'lucide-react';
 import { romanticAudio } from '../utils/audioSynth';
 
 interface MusicControllerProps {
-  onOpenSettings: () => void;
   onOpenAchievements: () => void;
   achievementCount: number;
   totalAchievements: number;
 }
 
 export const MusicController: React.FC<MusicControllerProps> = ({
-  onOpenSettings,
   onOpenAchievements,
   achievementCount,
   totalAchievements,
@@ -55,10 +53,10 @@ export const MusicController: React.FC<MusicControllerProps> = ({
               ? 'bg-gradient-to-r from-rose-600 to-pink-600 text-white shadow-md shadow-rose-600/30'
               : 'text-rose-200 hover:text-white'
           }`}
-          title={isPlaying ? 'Pause Romantic Music' : 'Play Romantic Music'}
+          title={isPlaying ? 'Pause Nyasha David — Ndoda' : 'Play Nyasha David — Ndoda'}
         >
           <Music className={`w-3.5 h-3.5 ${isPlaying ? 'animate-pulse text-rose-200' : ''}`} />
-          <span className="hidden md:inline">{isPlaying ? 'Playing Romantic Melody' : 'Music'}</span>
+          <span className="hidden md:inline">{isPlaying ? 'Ndoda' : 'Music'}</span>
           {isPlaying && (
             <span className="flex items-end gap-0.5 h-3">
               <span className="w-0.5 h-2 bg-white animate-bounce" style={{ animationDelay: '0ms' }} />
@@ -77,14 +75,6 @@ export const MusicController: React.FC<MusicControllerProps> = ({
         </button>
       </div>
 
-      {/* Personalization / Settings Button */}
-      <button
-        onClick={onOpenSettings}
-        className="p-2 rounded-full bg-rose-950/70 hover:bg-rose-900/80 text-rose-300 hover:text-white border border-rose-500/30 backdrop-blur-md transition-all shadow-lg active:scale-95"
-        title="Personalize Names & Dates"
-      >
-        <Settings className="w-3.5 h-3.5" />
-      </button>
     </header>
   );
 };

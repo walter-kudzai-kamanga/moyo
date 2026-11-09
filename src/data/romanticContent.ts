@@ -17,7 +17,7 @@ export const defaultPersonalization: UserPersonalization = {
   hisName: 'Walter',
   // Default anniversary set to ~245 days before current time, customizable anytime
   anniversaryDate: '2026-03-08T00:00:00',
-  nextDate: '2026-11-14T19:00:00',
+  nextDate: '2027-09-02T00:00:00',
   nextDateTitle: 'Candlelight Dinner & Stargazing',
 };
 
