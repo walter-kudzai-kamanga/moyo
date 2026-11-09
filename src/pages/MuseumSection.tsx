@@ -18,6 +18,7 @@ import { memoriesData, timelineMilestones } from '../data/romanticContent';
 import { MemoryItem, TimelineMilestone, UserPersonalization } from '../types';
 import { romanticAudio } from '../utils/audioSynth';
 import { fireHeartConfetti } from '../utils/confetti';
+import { safeStorage } from '../utils/storage';
 
 interface MuseumSectionProps {
   personalization: UserPersonalization;
@@ -32,7 +33,7 @@ export const MuseumSection: React.FC<MuseumSectionProps> = ({
 }) => {
   const [activeTab, setActiveTab] = useState<'gallery' | 'timeline'>('gallery');
   const [memories, setMemories] = useState<MemoryItem[]>(() => {
-    const saved = localStorage.getItem('lp_custom_memories');
+    const saved = safeStorage.getItem('lp_custom_memories');
     if (saved) {
       try {
         return JSON.parse(saved);
@@ -81,7 +82,7 @@ export const MuseumSection: React.FC<MuseumSectionProps> = ({
 
     const updated = [newMem, ...memories];
     setMemories(updated);
-    localStorage.setItem('lp_custom_memories', JSON.stringify(updated));
+    safeStorage.setItem('lp_custom_memories', JSON.stringify(updated));
     setShowAddModal(false);
     setNewTitle('');
     setNewDate('');

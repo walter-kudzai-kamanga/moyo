@@ -15,6 +15,7 @@ import { bucketListItems, travelDestinations } from '../data/romanticContent';
 import { BucketListItem, TravelDestination, UserPersonalization } from '../types';
 import { romanticAudio } from '../utils/audioSynth';
 import { fireHeartConfetti } from '../utils/confetti';
+import { safeStorage } from '../utils/storage';
 
 interface FutureSectionProps {
   personalization: UserPersonalization;
@@ -28,7 +29,7 @@ export const FutureSection: React.FC<FutureSectionProps> = ({
   onDreamChecked,
 }) => {
   const [items, setItems] = useState<BucketListItem[]>(() => {
-    const saved = localStorage.getItem('lp_bucket_list');
+    const saved = safeStorage.getItem('lp_bucket_list');
     if (saved) {
       try {
         return JSON.parse(saved);
@@ -61,7 +62,7 @@ export const FutureSection: React.FC<FutureSectionProps> = ({
     });
 
     setItems(updated);
-    localStorage.setItem('lp_bucket_list', JSON.stringify(updated));
+    safeStorage.setItem('lp_bucket_list', JSON.stringify(updated));
   };
 
   const handleAddDream = (e: React.FormEvent) => {
@@ -79,7 +80,7 @@ export const FutureSection: React.FC<FutureSectionProps> = ({
 
     const updated = [...items, newItem];
     setItems(updated);
-    localStorage.setItem('lp_bucket_list', JSON.stringify(updated));
+    safeStorage.setItem('lp_bucket_list', JSON.stringify(updated));
     setNewDreamTitle('');
     setShowAddDream(false);
   };

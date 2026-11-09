@@ -26,6 +26,7 @@ import { defaultPersonalization } from './data/romanticContent';
 import { UserPersonalization } from './types';
 import { romanticAudio } from './utils/audioSynth';
 import { fireHeartConfetti, fireRosePetalShower } from './utils/confetti';
+import { safeStorage } from './utils/storage';
 
 export default function App() {
   const [activeSection, setActiveSection] = useState<SectionId>('welcome');
@@ -34,7 +35,7 @@ export default function App() {
 
   // Load personalization from localStorage or defaults
   const [personalization, setPersonalization] = useState<UserPersonalization>(() => {
-    const saved = localStorage.getItem('lp_personalization');
+    const saved = safeStorage.getItem('lp_personalization');
     if (saved) {
       try {
         return JSON.parse(saved);
@@ -47,7 +48,7 @@ export default function App() {
 
   // Achievements unlocked state
   const [achievements, setAchievements] = useState<{ [key: string]: boolean }>(() => {
-    const saved = localStorage.getItem('lp_achievements');
+    const saved = safeStorage.getItem('lp_achievements');
     if (saved) {
       try {
         return JSON.parse(saved);
@@ -62,13 +63,13 @@ export default function App() {
     if (!achievements[key]) {
       const updated = { ...achievements, [key]: true };
       setAchievements(updated);
-      localStorage.setItem('lp_achievements', JSON.stringify(updated));
+      safeStorage.setItem('lp_achievements', JSON.stringify(updated));
     }
   };
 
   const handleSavePersonalization = (data: UserPersonalization) => {
     setPersonalization(data);
-    localStorage.setItem('lp_personalization', JSON.stringify(data));
+    safeStorage.setItem('lp_personalization', JSON.stringify(data));
   };
 
   const navigateTo = (sec: SectionId) => {
