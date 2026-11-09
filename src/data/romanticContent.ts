@@ -12,13 +12,13 @@ import {
 } from '../types';
 
 export const defaultPersonalization: UserPersonalization = {
-  herName: 'Beautiful',
-  herNickname: 'My Angel',
-  hisName: 'Walter',
-  // Default anniversary set to ~245 days before current time, customizable anytime
-  anniversaryDate: '2026-03-08T00:00:00',
-  nextDate: '2026-11-14T19:00:00',
-  nextDateTitle: 'Candlelight Dinner & Stargazing',
+  herName: 'Tino',
+  herNickname: 'Mai Kuku (Mai Future, Mai Kamanga)',
+  hisName: 'Walter Kamanga',
+  // Anniversary: 20 February 2023 (Loving each other across the miles)
+  anniversaryDate: '2023-02-20T00:00:00',
+  nextDate: '2026-11-20T18:00:00',
+  nextDateTitle: 'Closing The Distance • Next Airport Hug with Mai Kamanga ❤️',
 };
 
 export const reasonsData: ReasonItem[] = [
@@ -204,66 +204,66 @@ export const memoriesData: MemoryItem[] = [
 export const timelineMilestones: TimelineMilestone[] = [
   {
     id: 'tl-1',
-    yearOrDate: 'Chapter 01',
-    title: 'The Day We First Crossed Paths',
-    subtitle: 'Where destiny took over',
-    description: 'The universe somehow aligned all its stars so that two strangers could meet. You caught my attention from the very first second.',
+    yearOrDate: '20 February 2023',
+    title: 'The Official Beginning of Us ❤️',
+    subtitle: 'Where our forever journey started',
+    description: 'On 20 February 2023, two hearts aligned and made the best decision of their lives. That was the day Walter and Tino officially chose each other.',
     iconName: 'Sparkles',
-    highlight: 'A spark was born',
+    highlight: 'Anniversary • 20 Feb 2023',
   },
   {
     id: 'tl-2',
     yearOrDate: 'Chapter 02',
-    title: 'Our First Real Conversation',
-    subtitle: 'Losing track of time',
-    description: 'I remember thinking how effortlessly you talked and how refreshing your humor was. I didn’t want the conversation to ever end.',
+    title: 'Hours Turned Into Minutes',
+    subtitle: 'Late night talks across the miles',
+    description: 'Even when miles separated us, talking with you felt like sitting right beside you. Falling asleep on call, sharing every detail of our days, and building an unbreakable foundation.',
     iconName: 'MessageCircleHeart',
-    highlight: 'Hours felt like minutes',
+    highlight: 'Endless late talks',
   },
   {
     id: 'tl-3',
     yearOrDate: 'Chapter 03',
-    title: 'The First Time You Made Me Smile',
-    subtitle: 'That contagious chuckle',
-    description: 'You made that cheeky remark and that cute little grin appeared on your face. Right then, I knew you were something extraordinary.',
+    title: 'The Unstoppable Nicknames Born',
+    subtitle: 'Mai Kuku, Mai Future, Mai Kamanga',
+    description: 'The moment calling you by just your name wasn’t enough. You became my Mai Kuku, my Mai Future, and the woman I know will carry the Kamanga name proudly.',
     iconName: 'Smile',
-    highlight: 'Irresistible charm',
+    highlight: 'Mai Kamanga',
   },
   {
     id: 'tl-4',
     yearOrDate: 'Chapter 04',
-    title: 'Our First Official Date',
-    subtitle: 'Butterflies in full flight',
-    description: 'I rehearsed what I was going to wear three times. All the nervous tension vanished the moment you looked at me with that warm greeting.',
-    iconName: 'HeartHandshake',
-    highlight: 'Butterflies & warmth',
+    title: 'Conquering The Long Distance',
+    subtitle: 'Love that knows no borders',
+    description: 'Being in a long distance relationship proved that what we have is authentic, resilient, and rare. Distance only made our loyalty, patience, and love a thousand times stronger.',
+    iconName: 'Compass',
+    highlight: 'Unshakable devotion',
   },
   {
     id: 'tl-5',
     yearOrDate: 'Chapter 05',
-    title: 'Our Favourite Adventure Together',
-    subtitle: 'Exploring hand in hand',
-    description: 'New sights, delicious food, silly inside jokes, and sharing memories that are permanently etched into my mind.',
-    iconName: 'Compass',
-    highlight: 'Unforgettable moments',
+    title: 'Those Unforgettable Reunions',
+    subtitle: 'Dropping all the bags to hold you',
+    description: 'Nothing in this world compares to seeing your face in person, feeling your warmth, and holding you tight knowing every single second of waiting was worth it.',
+    iconName: 'HeartHandshake',
+    highlight: 'Worth every mile',
   },
   {
     id: 'tl-6',
     yearOrDate: 'Chapter 06',
-    title: 'The Realization Moment',
-    subtitle: 'You are my person',
-    description: 'Not a sudden lightning bolt, but a steady, profound quiet truth: in this crowded world of billions, it’s you I want to do life with.',
+    title: 'The Certainty of Our Future',
+    subtitle: 'You are my destined wife',
+    description: 'Not a shadow of doubt in my spirit: out of 8 billion people, it’s you I will cherish, protect, and stand beside for the rest of my days.',
     iconName: 'Infinity',
     highlight: 'Forever decided',
   },
   {
     id: 'tl-7',
-    yearOrDate: 'Today & Beyond',
+    yearOrDate: 'Today & Forever',
     title: 'Still Choosing You, Every Single Day',
-    subtitle: 'Our story continues',
-    description: 'Every morning I wake up grateful for your existence, your love, and the beautiful chapters we still get to write together.',
+    subtitle: 'Until the distance is permanently 0 cm',
+    description: 'Every morning I wake up thanking God for Tino. Soon we will close the distance for good and never have to say goodbye again.',
     iconName: 'Heart',
-    highlight: 'Always yours',
+    highlight: 'Always yours, Walter',
   },
 ];
 
@@ -361,16 +361,16 @@ export const quizQuestions: QuizQuestion[] = [
   },
   {
     id: 8,
-    question: 'What title do you officially hold in Walter’s life?',
+    question: 'What sweet nicknames does Walter love calling you most?',
     options: [
-      'The Most Beautiful Girl in the World',
-      'His Peace, His Happiness & His Partner in Crime',
-      'The Official, Undisputed Owner of His Heart',
-      'All of the above, sealed for eternity! ❤️',
+      'Mai Kuku (his absolute favorite!)',
+      'Mai Future (because you are his destiny)',
+      'Mai Kamanga (his forever person)',
+      'All of the above — Mai Kuku, Mai Future, Mai Kamanga & Moyo Wangu! ❤️',
     ],
     correctIndex: 3,
-    explanation: "Certified, stamped, sealed! You own every single heartbeat.",
-    romanticNote: "Forever yours, no return policy, no expiration date! ❤️",
+    explanation: "You are my Mai Kuku, my Mai Future, and forever my Mai Kamanga. You own every single beat of Walter's heart (moyo wangu).",
+    romanticNote: "Out of all the sweet names in the world, calling you Mai Kamanga will always be my greatest pride.",
   },
 ];
 
@@ -382,18 +382,20 @@ export const openWhenEnvelopes: OpenWhenEnvelope[] = [
     mood: 'Longing & Affection',
     icon: 'HeartHandshake',
     color: 'from-rose-900/60 to-pink-950/70',
-    letter: `My Love,
+    letter: `My Dearest Tino (Mai Kuku),
 
-If you are reading this, chances are I am missing you just as fiercely right at this very moment. 
+If you are reading this, chances are I am missing you just as fiercely across these miles right at this very moment. 
 
-Close your eyes for three seconds. Take a deep, gentle breath. Imagine my arms wrapped securely around you, pulling you in close, my chin resting lightly on your head, whispering that everything is okay.
+Close your eyes for three seconds. Take a deep, gentle breath. Imagine my arms wrapped securely around you, pulling you in close, my chin resting lightly on your head, whispering that everything is going to be okay.
 
-Distance is only a physical measurement; it has zero authority over how tightly my heart holds onto yours. You are in my thoughts when I wake up, in my mind during the busy hours, and in my quietest prayers before I sleep.
+Distance is only a physical measurement; it has zero authority over how tightly my heart holds onto yours. You are in my thoughts when I wake up, in my mind throughout the busy day, and in my quietest prayers before I sleep. Every flight countdown, every late-night call, and every 'goodnight' through a screen is just a temporary stepping stone.
 
-Send me a message right now. Tell me what you're doing. And remember: the wait to hold you again is always worth every single second.
+One day soon, there will be no more airport goodbyes, no more time zones, and no more longing through a phone screen. Just you and me, waking up next to each other every single morning as Mr. & Mrs. Kamanga.
 
-With all my love, Walter ❤️`,
-    quote: "Distance means so little when someone means so much.",
+Send me a message right now, Mai Future. Tell me what you're doing. And remember: the wait to hold you in my arms again is worth every single second.
+
+With all my love across the miles, Walter Kamanga ❤️`,
+    quote: "Distance means so little when someone means so much. You are my whole heart, moyo wangu.",
     suggestedAction: "Send Walter a text or selfie right now! 📸",
   },
   {
@@ -593,6 +595,9 @@ Eternally yours, Walter ❤️`,
 ];
 
 export const bucketListItems: BucketListItem[] = [
+  { id: 'b-ldr-1', title: 'The big airport reunion: drop all our bags, run into each other’s arms, and never let go ❤️', category: 'adventure', completed: false },
+  { id: 'b-ldr-2', title: 'Permanently close the distance and never have to say goodbye at an airport terminal again', category: 'milestone', completed: false },
+  { id: 'b-ldr-3', title: 'Fall asleep face-to-face and wake up next to each other instead of through a phone screen', category: 'cozy', completed: false },
   { id: 'b-1', title: 'Watch the sunset together on a quiet beach with a cozy blanket', category: 'romance' as any, completed: true },
   { id: 'b-2', title: 'Go on an unplanned, spontaneous road trip with our favourite playlist', category: 'adventure', completed: false },
   { id: 'b-3', title: 'Have a fancy candlelit dinner all dressed up just for each other', category: 'romance' as any, completed: true },
@@ -601,8 +606,8 @@ export const bucketListItems: BucketListItem[] = [
   { id: 'b-6', title: 'Cook an elaborate 3-course meal from scratch together (even if it gets messy!)', category: 'cozy', completed: false },
   { id: 'b-7', title: 'Spend an entire rainy Sunday in bed doing absolutely nothing together', category: 'cozy', completed: true },
   { id: 'b-8', title: 'Stargaze away from city lights and find shooting stars', category: 'adventure', completed: false },
-  { id: 'b-9', title: 'Build our dream home library with our favourite books and a reading nook', category: 'milestone', completed: false },
-  { id: 'b-10', title: 'Celebrate our 10th, 25th, and 50th anniversaries still deeply in love', category: 'milestone', completed: false },
+  { id: 'b-9', title: 'Build our dream home with our favourite books, music, and peace', category: 'milestone', completed: false },
+  { id: 'b-10', title: 'Celebrate our 10th, 25th, and 50th anniversaries still deeply in love as Mr. & Mrs. Kamanga', category: 'milestone', completed: false },
 ];
 
 export const travelDestinations: TravelDestination[] = [
@@ -764,32 +769,32 @@ export const voiceTracksData: VoiceTrack[] = [
     id: 'vt-1',
     title: 'When You Miss Me',
     subtitle: 'A personal reminder from Walter',
-    duration: '0:45',
+    duration: '0:48',
     description: 'Listen whenever distance feels heavy and you need to hear my voice close to your ear.',
-    speechText: "Hey beautiful. If you're listening to this right now, I just want you to know that someone is thinking about you. In fact, you're the only one on my mind. I hope you're smiling right now, because your smile is my favorite thing in this world. Close your eyes, take a breath, and know that I love you more than words could ever say.",
+    speechText: "Hey Tino, my beautiful Mai Kuku... If you're listening to this right now, I just want you to know that someone is thinking about you. In fact, you're the only one on my mind. I hope you're smiling right now, Mai Future, because your smile is my favorite thing in this entire world. Close your eyes, take a breath, and know that Walter loves you more than words could ever say. You are my whole heart, moyo wangu.",
   },
   {
     id: 'vt-2',
-    title: 'Goodnight, My Angel',
+    title: 'Goodnight, Mai Kuku',
     subtitle: 'A sweet bedtime blessing',
-    duration: '0:38',
+    duration: '0:42',
     description: 'Play this right before you close your eyes and let sleep carry your worries away.',
-    speechText: "Goodnight, my love. Let go of whatever made today heavy. You did wonderfully today, and I am so proud of you. Wrap yourself up tight, know that you are deeply loved and safe, and I will see you in our dreams. Sweet dreams, beautiful.",
+    speechText: "Goodnight, Tino, my sweet Mai Kuku. Let go of whatever made today heavy. You did wonderfully today, Mai Future, and I am so proud of you. Wrap yourself up tight, know that you are deeply loved and protected with Walter, and I will see you in our dreams. Sweet dreams, Mai Kamanga.",
   },
   {
     id: 'vt-3',
-    title: 'Morning Sunshine',
+    title: 'Morning Sunshine, Mai Kamanga',
     subtitle: 'Start your day with a smile',
-    duration: '0:35',
+    duration: '0:38',
     description: 'A morning reminder of how special you are before you face the world.',
-    speechText: "Good morning, sunshine! Just wanted to make sure the first thing you heard today was a reminder of how gorgeous and capable you are. Go conquer your day, do your best, and remember that I am cheering for you always. I love you!",
+    speechText: "Good morning, my sunshine Tino! Just wanted to make sure the first thing you heard today was a reminder of how gorgeous, capable, and deeply loved you are. Go conquer your day, Mai Kuku, do your best, and remember that Walter is cheering for you always. I love you, Mai Kamanga!",
   },
   {
     id: 'vt-4',
-    title: 'Our Romantic Melody',
+    title: 'Our Romantic Melody (Moyo Wangu)',
     subtitle: 'Soft chords crafted for you',
     duration: '1:10',
     description: 'A soothing polyphonic romantic ambient piano progression composed directly for your peace.',
-    speechText: "This melody was created just for you. Whenever you listen, remember that every note represents a heartbeat that beats solely for you, my love.",
+    speechText: "This melody was created just for you, Tino. Whenever you listen, remember that every note represents a heartbeat that beats solely for you, Mai Future, moyo wangu.",
   },
 ];

@@ -93,10 +93,13 @@ export const LoveCounterSection: React.FC<LoveCounterSectionProps> = ({
 
       {/* Main Counter Card 1: Time Together */}
       <div className="glass-panel rounded-3xl p-6 sm:p-12 border border-rose-500/30 shadow-2xl text-center mb-8 relative overflow-hidden">
-        <div className="inline-flex items-center gap-2 text-xs font-mono uppercase tracking-widest text-amber-300 mb-3">
+        <div className="inline-flex items-center gap-2 text-xs font-mono uppercase tracking-widest text-amber-300 mb-1">
           <Heart className="w-4 h-4 fill-rose-500 text-rose-500 animate-pulse" />
-          <span>We Have Been Creating Memories For:</span>
+          <span>Every Second of Our Story Since 20 February 2023:</span>
         </div>
+        <p className="text-xs text-rose-300/90 font-serif-romantic tracking-widest uppercase mb-3">
+          Walter & Tino (Mai Kamanga) • Loving Across The Miles • Anniversary: 20 February 2023 ❤️
+        </p>
 
         {/* Big Numbers Grid */}
         <div className="grid grid-cols-2 sm:grid-cols-4 gap-4 sm:gap-6 my-6 max-w-3xl mx-auto">
@@ -122,6 +125,37 @@ export const LoveCounterSection: React.FC<LoveCounterSectionProps> = ({
               </div>
             </div>
           ))}
+        </div>
+
+        {/* Long Distance Love Card */}
+        <div className="p-5 sm:p-6 rounded-2xl bg-gradient-to-r from-purple-950/50 via-rose-950/60 to-pink-950/50 border border-rose-400/30 my-6 text-left max-w-2xl mx-auto">
+          <div className="flex items-center justify-between mb-2">
+            <span className="flex items-center gap-2 text-xs uppercase tracking-widest text-amber-300 font-mono font-semibold">
+              <Sparkles className="w-3.5 h-3.5 text-amber-400" />
+              <span>Distance Doesn't Matter</span>
+            </span>
+            <span className="text-xs text-rose-300 font-mono">Miles Apart • One Heart</span>
+          </div>
+          <h4 className="text-lg font-bold font-serif-romantic text-rose-100 mb-1">
+            "Moyo Mumwe Chete" — Distance Only Measures Space, Never Love
+          </h4>
+          <p className="text-xs text-rose-200/90 leading-relaxed font-sans mb-3">
+            Since 20 February 2023, no matter how many kilometers or time zones lie between us, we fall asleep under the exact same moon and stars. Every phone call, every video talk, and every countdown brings us one day closer to the moment where the distance between Walter and Tino is permanently zero.
+          </p>
+          <div className="flex flex-wrap items-center justify-between gap-3 pt-3 border-t border-rose-500/20">
+            <span className="text-[11px] text-amber-300 font-handwriting text-lg">
+              One day soon: no airport goodbyes, only "welcome home, Mai Kamanga" ❤️
+            </span>
+            <button
+              onClick={() => {
+                romanticAudio.playKissSound();
+                fireHeartConfetti();
+              }}
+              className="px-3.5 py-1.5 rounded-full bg-rose-600/80 hover:bg-rose-600 text-white text-[11px] font-semibold transition-all shadow-md active:scale-95"
+            >
+              Send Kiss Across The Miles 💋
+            </button>
+          </div>
         </div>
 
         <p className="font-serif-romantic text-base sm:text-lg text-rose-200/90 italic max-w-md mx-auto">

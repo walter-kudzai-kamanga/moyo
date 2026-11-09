@@ -33,7 +33,7 @@ Thank you for being part of my story. Thank you for the smiles, the memories, th
 
 And if I had to choose all over again in every single lifetime, I'd still want to discover you.
 
-I love you, ${personalization.herName}. Today, tomorrow, and in all the little moments in between. ❤️`;
+I love you, ${personalization.herName} — my Mai Kuku, my Mai Future, and forever my Mai Kamanga. Today, tomorrow, and in all the little moments in between. You are my whole heart, moyo wangu. ❤️`;
 
   const handleRevealClimax = () => {
     setIsRevealed(true);

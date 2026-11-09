@@ -38,7 +38,14 @@ export default function App() {
     const saved = safeStorage.getItem('lp_personalization');
     if (saved) {
       try {
-        return JSON.parse(saved);
+        const parsed = JSON.parse(saved);
+        if (parsed.herName && parsed.herName !== 'Beautiful') {
+          return {
+            ...parsed,
+            // Ensure 20 February 2023 anniversary is synced
+            anniversaryDate: (parsed.anniversaryDate === '2026-03-08T00:00:00' || parsed.anniversaryDate === '2026-02-20T00:00:00') ? '2023-02-20T00:00:00' : (parsed.anniversaryDate || '2023-02-20T00:00:00'),
+          };
+        }
       } catch (e) {
         return defaultPersonalization;
       }

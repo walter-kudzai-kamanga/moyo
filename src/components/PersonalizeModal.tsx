@@ -65,7 +65,7 @@ export const PersonalizeModal: React.FC<PersonalizeModalProps> = ({
                   type="text"
                   value={formData.herName}
                   onChange={(e) => setFormData({ ...formData, herName: e.target.value })}
-                  placeholder="e.g. Kudzai / Beautiful"
+                  placeholder="Tino"
                   required
                   className="w-full pl-9 pr-3 py-2 rounded-xl bg-rose-950/60 border border-rose-500/30 text-rose-100 placeholder-rose-400/50 focus:outline-none focus:border-rose-400"
                 />
@@ -73,14 +73,14 @@ export const PersonalizeModal: React.FC<PersonalizeModalProps> = ({
             </div>
 
             <div>
-              <label className="block text-xs font-medium text-rose-300 mb-1">Her Sweet Nickname</label>
+              <label className="block text-xs font-medium text-rose-300 mb-1">Her Sweet Nicknames</label>
               <div className="relative">
                 <Sparkles className="absolute left-3 top-2.5 w-4 h-4 text-rose-400" />
                 <input
                   type="text"
                   value={formData.herNickname}
                   onChange={(e) => setFormData({ ...formData, herNickname: e.target.value })}
-                  placeholder="e.g. My Angel / Sunshine"
+                  placeholder="Mai Kuku, Mai Future, Mai Kamanga"
                   required
                   className="w-full pl-9 pr-3 py-2 rounded-xl bg-rose-950/60 border border-rose-500/30 text-rose-100 placeholder-rose-400/50 focus:outline-none focus:border-rose-400"
                 />
@@ -96,7 +96,7 @@ export const PersonalizeModal: React.FC<PersonalizeModalProps> = ({
                 type="text"
                 value={formData.hisName}
                 onChange={(e) => setFormData({ ...formData, hisName: e.target.value })}
-                placeholder="Walter"
+                placeholder="Walter Kamanga"
                 required
                 className="w-full pl-9 pr-3 py-2 rounded-xl bg-rose-950/60 border border-rose-500/30 text-rose-100 placeholder-rose-400/50 focus:outline-none focus:border-rose-400"
               />
