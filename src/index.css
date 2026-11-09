@@ -1,0 +1,109 @@
+@import "tailwindcss";
+
+@layer base {
+  :root {
+    --font-serif: 'Cormorant Garamond', Georgia, serif;
+    --font-handwriting: 'Dancing Script', cursive;
+    --font-calligraphy: 'Alex Brush', cursive;
+    --font-sans: 'Plus Jakarta Sans', system-ui, -apple-system, sans-serif;
+  }
+
+  body {
+    font-family: var(--font-sans);
+    background-color: #120308;
+    color: #fceef2;
+    background-image: 
+      radial-gradient(circle at 50% 0%, rgba(186, 24, 71, 0.18) 0%, transparent 60%),
+      radial-gradient(circle at 100% 50%, rgba(136, 19, 55, 0.12) 0%, transparent 50%),
+      radial-gradient(circle at 0% 100%, rgba(92, 10, 36, 0.15) 0%, transparent 50%);
+    background-attachment: fixed;
+  }
+}
+
+.font-serif-romantic {
+  font-family: 'Cormorant Garamond', Georgia, serif;
+}
+
+.font-handwriting {
+  font-family: 'Dancing Script', cursive;
+}
+
+.font-calligraphy {
+  font-family: 'Alex Brush', cursive;
+}
+
+/* 3D flip card support */
+.perspective-1000 {
+  perspective: 1000px;
+}
+.transform-style-3d {
+  transform-style: preserve-3d;
+}
+.backface-hidden {
+  backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
+}
+.rotate-y-180 {
+  transform: rotateY(180deg);
+}
+
+/* Custom pulse and glow */
+@keyframes heartPulse {
+  0%, 100% {
+    transform: scale(1);
+    filter: drop-shadow(0 0 15px rgba(244, 63, 94, 0.6));
+  }
+  50% {
+    transform: scale(1.08);
+    filter: drop-shadow(0 0 30px rgba(244, 63, 94, 0.9));
+  }
+}
+
+.animate-heart-pulse {
+  animation: heartPulse 1.8s infinite ease-in-out;
+}
+
+@keyframes floatGentle {
+  0%, 100% {
+    transform: translateY(0px) rotate(0deg);
+  }
+  50% {
+    transform: translateY(-8px) rotate(1deg);
+  }
+}
+
+.animate-float-gentle {
+  animation: floatGentle 4s infinite ease-in-out;
+}
+
+/* Glassmorphism romantic panels */
+.glass-panel {
+  background: rgba(36, 8, 18, 0.65);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid rgba(244, 114, 182, 0.18);
+  box-shadow: 0 10px 40px -10px rgba(0, 0, 0, 0.5), inset 0 1px 0 0 rgba(255, 255, 255, 0.08);
+}
+
+.glass-panel-light {
+  background: rgba(255, 245, 248, 0.95);
+  backdrop-filter: blur(12px);
+  border: 1px solid rgba(225, 29, 72, 0.15);
+  box-shadow: 0 15px 35px -5px rgba(186, 24, 71, 0.15);
+}
+
+/* Custom romantic scrollbar */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+::-webkit-scrollbar-track {
+  background: #140409;
+}
+::-webkit-scrollbar-thumb {
+  background: #701a2d;
+  border-radius: 9999px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #9f1239;
+}

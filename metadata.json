@@ -1,0 +1,6 @@
+{
+  "name": "Little Piece of My Heart",
+  "description": "An interactive romantic digital love experience crafted exclusively for your girlfriend with love letters, 20 reasons, memory museum, love quiz, and audio keepsakes.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
