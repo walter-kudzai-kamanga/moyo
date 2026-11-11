@@ -11,6 +11,7 @@ class RomanticAudioController {
   private masterGain: GainNode | null = null;
   private isMuted = false;
   private trackFrame: HTMLIFrameElement | null = null;
+  private holdMusic = false;
   // Nyasha David — Ndoda (Official Audio)
   private readonly trackId = 'cHkEfoeGIKk';
 
@@ -94,22 +95,33 @@ class RomanticAudioController {
     });
     if (this.isMuted) params.set('mute', '1');
     frame.src = `https://www.youtube.com/embed/${this.trackId}?${params.toString()}`;
+    frame.addEventListener('load', () => this.postTrack('playVideo'));
     document.body.appendChild(frame);
     this.trackFrame = frame;
   }
 
   private unmountTrack() {
-    if (!this.trackFrame) return;
-    this.trackFrame.src = 'about:blank';
-    this.trackFrame.remove();
+    document.querySelectorAll('iframe[title="Nyasha David - Ndoda"]').forEach((frame) => {
+      frame.remove();
+    });
     this.trackFrame = null;
   }
 
   public startRomanticMusic() {
+    if (this.holdMusic) return;
     this.initContext();
-    if (this.isMusicPlaying && this.trackFrame) return;
+    if (this.isMusicPlaying && this.trackFrame) {
+      this.postTrack('playVideo');
+      return;
+    }
     this.isMusicPlaying = true;
     this.mountTrack();
+  }
+
+  public holdMusicForVoice(hold: boolean) {
+    this.holdMusic = hold;
+    if (hold) this.stopRomanticMusic();
+    else this.startRomanticMusic();
   }
 
   public stopRomanticMusic() {
@@ -304,34 +316,34 @@ class RomanticAudioController {
     window.speechSynthesis.cancel();
 
     const utterance = new SpeechSynthesisUtterance(text);
-    utterance.rate = 0.88; // Gentle, intimate, unhurried pace
-    utterance.pitch = 0.95; // Warm, soothing tone
-
-    // Try finding an English voice
-    const voices = window.speechSynthesis.getVoices();
-    const preferredVoice = voices.find(
-      (v) =>
-        v.lang.startsWith('en') &&
-        (v.name.includes('Natural') || v.name.includes('Daniel') || v.name.includes('Male') || v.name.includes('Google'))
-    ) || voices.find((v) => v.lang.startsWith('en'));
-
-    if (preferredVoice) {
-      utterance.voice = preferredVoice;
-    }
+    utterance.rate = 0.9;
+    utterance.pitch = 0.72;
+    const voice = this.pickWalterVoice(window.speechSynthesis.getVoices());
+    if (voice) utterance.voice = voice;
 
     utterance.onstart = () => {
       if (onStart) onStart();
     };
-
     utterance.onend = () => {
       if (onEnd) onEnd();
     };
-
     utterance.onerror = () => {
       if (onEnd) onEnd();
     };
 
     window.speechSynthesis.speak(utterance);
+  }
+
+  private pickWalterVoice(voices: SpeechSynthesisVoice[]): SpeechSynthesisVoice | undefined {
+    const maleHints = ['male', 'daniel', 'david', 'guy', 'james', 'george', 'brian', 'alex', 'fred', 'rishi', 'arthur', 'thomas'];
+    const femaleHints = ['female', 'samantha', 'victoria', 'zira', 'susan', 'karen', 'moira', 'fiona', 'tessa', 'veena', 'sara', 'zira'];
+    const english = voices.filter((voice) => voice.lang.toLowerCase().startsWith('en'));
+    const pool = english.length > 0 ? english : voices;
+    return (
+      pool.find((voice) => maleHints.some((hint) => voice.name.toLowerCase().includes(hint))) ||
+      pool.find((voice) => !femaleHints.some((hint) => voice.name.toLowerCase().includes(hint))) ||
+      pool[0]
+    );
   }
 
   public stopSpeaking() {

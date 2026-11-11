@@ -64,29 +64,39 @@ export const VoiceSection: React.FC<VoiceSectionProps> = ({
     if (isPlaying) {
       romanticAudio.stopSpeaking();
       setIsPlaying(false);
+      romanticAudio.holdMusicForVoice(false);
     } else {
+      romanticAudio.holdMusicForVoice(true);
       setIsPlaying(true);
       romanticAudio.playHeartSound();
       fireHeartConfetti();
       onVoicePlayed();
 
-      // Speak romantic text personalized with Her & Walter's name
-      const textToSpeak = activeTrack.speechText
-        .replace(/beautiful/gi, personalization.herName)
-        .replace(/Walter/gi, personalization.hisName);
+      const textToSpeak = activeTrack.speechText.replace(/\bWalter\b/g, personalization.hisName);
 
       romanticAudio.speakRomanticText(
         textToSpeak,
         () => setIsPlaying(true),
-        () => setIsPlaying(false)
+        () => {
+          setIsPlaying(false);
+          romanticAudio.holdMusicForVoice(false);
+        }
       );
     }
   };
+
+  useEffect(() => {
+    return () => {
+      romanticAudio.stopSpeaking();
+      romanticAudio.holdMusicForVoice(false);
+    };
+  }, []);
 
   const handleSelectTrack = (index: number) => {
     if (isPlaying) {
       romanticAudio.stopSpeaking();
       setIsPlaying(false);
+      romanticAudio.holdMusicForVoice(false);
     }
     romanticAudio.playCardFlip();
     setCurrentTrackIndex(index);
@@ -191,7 +201,7 @@ export const VoiceSection: React.FC<VoiceSectionProps> = ({
             Words Spoken From Walter's Heart:
           </span>
           <p className="font-handwriting text-xl sm:text-2xl text-rose-100 leading-relaxed italic">
-            "{activeTrack.speechText.replace(/beautiful/gi, personalization.herName)}"
+            "{activeTrack.speechText.replace(/\bWalter\b/g, personalization.hisName)}"
           </p>
         </div>
       </div>

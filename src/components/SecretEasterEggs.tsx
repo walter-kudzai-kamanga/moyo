@@ -38,8 +38,17 @@ export const SecretEasterEggs: React.FC<SecretEasterEggsProps> = ({
   const unlockedCount = Object.values(achievements).filter(Boolean).length;
   const isAllUnlocked = unlockedCount >= totalPossibleAchievements;
 
+  const vibratePhone = (pattern: number | number[]) => {
+    const uaData = (navigator as Navigator & { userAgentData?: { mobile?: boolean } }).userAgentData;
+    const phone = uaData?.mobile
+      ?? /Android.+Mobile|iPhone|iPod|Windows Phone/i.test(navigator.userAgent);
+    if (!phone || typeof navigator.vibrate !== 'function') return;
+    navigator.vibrate(pattern);
+  };
+
   // Handle Virtual Kiss
   const handleTriggerKiss = (e?: React.MouseEvent) => {
+    vibratePhone([35, 45, 55]);
     romanticAudio.playKissSound();
     fireHeartConfetti(0.5, 0.5);
     onUnlockAchievement('kiss');
@@ -57,6 +66,7 @@ export const SecretEasterEggs: React.FC<SecretEasterEggsProps> = ({
 
   // Handle Virtual Hug
   const handleTriggerHug = () => {
+    vibratePhone([90, 110, 70, 930, 90, 110, 70, 930, 90, 110, 70, 930, 90, 110, 70, 930, 90, 110, 70, 930, 90, 110, 70]);
     setShowHugModal(true);
     romanticAudio.playHeartSound();
     onUnlockAchievement('hug');
@@ -145,7 +155,10 @@ export const SecretEasterEggs: React.FC<SecretEasterEggsProps> = ({
         <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/80 backdrop-blur-lg animate-in fade-in duration-300">
           <div className="relative w-full max-w-md glass-panel rounded-3xl p-8 border border-rose-500/40 text-center text-rose-100 shadow-2xl">
             <button
-              onClick={() => setShowHugModal(false)}
+              onClick={() => {
+                navigator.vibrate?.(0);
+                setShowHugModal(false);
+              }}
               className="absolute top-4 right-4 p-2 text-rose-300 hover:text-white rounded-full bg-rose-950/50"
             >
               <X className="w-5 h-5" />
@@ -172,6 +185,7 @@ export const SecretEasterEggs: React.FC<SecretEasterEggsProps> = ({
 
             <button
               onClick={() => {
+                navigator.vibrate?.(0);
                 romanticAudio.playHeartSound();
                 fireHeartConfetti();
                 setShowHugModal(false);

@@ -6,7 +6,6 @@
 import React, { useState, useEffect } from 'react';
 import { FloatingHeartsCanvas } from './components/FloatingHeartsCanvas';
 import { Navigation, SectionId } from './components/Navigation';
-import { MusicController } from './components/MusicController';
 import { PersonalizeModal } from './components/PersonalizeModal';
 import { SecretEasterEggs } from './components/SecretEasterEggs';
 
@@ -89,17 +88,21 @@ export default function App() {
     fireHeartConfetti();
   };
 
+  useEffect(() => {
+    romanticAudio.startRomanticMusic();
+    const resume = () => romanticAudio.startRomanticMusic();
+    window.addEventListener('pointerdown', resume, { capture: true });
+    window.addEventListener('keydown', resume, { capture: true });
+    return () => {
+      window.removeEventListener('pointerdown', resume, { capture: true });
+      window.removeEventListener('keydown', resume, { capture: true });
+    };
+  }, []);
+
   return (
     <div className="relative min-h-screen text-[#fbebf0] bg-[#120308] font-sans selection:bg-rose-500/30 selection:text-rose-100 overflow-x-hidden pb-24 lg:pb-12">
       {/* 60fps Floating Hearts and Stardust Canvas */}
       <FloatingHeartsCanvas />
-
-      {/* Top Floating Music Controller & Achievements */}
-      <MusicController
-        onOpenAchievements={() => setShowAchievementsModal(true)}
-        achievementCount={Object.values(achievements).filter(Boolean).length}
-        totalAchievements={6}
-      />
 
       {/* Persistent Navigation (Desktop Top Bar & Mobile Bottom Dock) */}
       <Navigation

@@ -42,18 +42,18 @@ export const Navigation: React.FC<NavigationProps> = ({
   const [logoClicks, setLogoClicks] = useState(0);
   const [showStarWish, setShowStarWish] = useState(false);
 
-  const navItems: Array<{ id: SectionId; label: string; icon: any; emoji: string }> = [
-    { id: 'welcome', label: 'Home', icon: Home, emoji: '🏠' },
-    { id: 'letter', label: 'My Letter', icon: Mail, emoji: '💌' },
-    { id: 'reasons', label: '20 Reasons', icon: Heart, emoji: '❤️' },
-    { id: 'museum', label: 'Museum', icon: Camera, emoji: '📸' },
-    { id: 'quiz', label: 'Love Quiz', icon: HelpCircle, emoji: '🎮' },
-    { id: 'openwhen', label: 'Open When', icon: Sparkles, emoji: '💕' },
-    { id: 'future', label: 'Our Future', icon: Compass, emoji: '🌍' },
-    { id: 'voice', label: 'My Voice', icon: Headphones, emoji: '🎵' },
-    { id: 'appreciation', label: 'Appreciation', icon: Flame, emoji: '💫' },
-    { id: 'counter', label: 'Love Counter', icon: Clock, emoji: '⏳' },
-    { id: 'final', label: 'Final Surprise', icon: Sparkles, emoji: '✨' },
+  const navItems: Array<{ id: SectionId; label: string; icon: typeof Home }> = [
+    { id: 'welcome', label: 'Home', icon: Home },
+    { id: 'letter', label: 'My Letter', icon: Mail },
+    { id: 'reasons', label: '20 Reasons', icon: Heart },
+    { id: 'museum', label: 'Museum', icon: Camera },
+    { id: 'quiz', label: 'Love Quiz', icon: HelpCircle },
+    { id: 'openwhen', label: 'Open When', icon: Sparkles },
+    { id: 'future', label: 'Our Future', icon: Compass },
+    { id: 'voice', label: 'My Voice', icon: Headphones },
+    { id: 'appreciation', label: 'Appreciation', icon: Flame },
+    { id: 'counter', label: 'Love Counter', icon: Clock },
+    { id: 'final', label: 'Final Surprise', icon: Sparkles },
   ];
 
   const handleLogoClick = () => {
@@ -79,24 +79,25 @@ export const Navigation: React.FC<NavigationProps> = ({
 
   return (
     <>
-      {/* Top Floating Glass Header (Desktop & Tablet) */}
-      <nav className="fixed top-3 left-1/2 -translate-x-1/2 z-40 hidden lg:flex items-center gap-1 px-4 py-2 rounded-full glass-panel border border-rose-500/25 shadow-2xl backdrop-blur-xl">
+      {/* Full-width top bar on large screens */}
+      <nav className="fixed top-0 inset-x-0 z-40 hidden h-16 lg:flex items-center gap-4 px-5 xl:px-8 glass-panel !rounded-none !border-x-0 !border-t-0 !border-b border-rose-500/30 shadow-lg backdrop-blur-xl">
         {/* Secret Interactive Logo */}
         <button
           onClick={handleLogoClick}
-          className="flex items-center gap-2 pr-3 pl-1 border-r border-rose-500/20 text-xs font-semibold text-rose-200 hover:text-white transition-all active:scale-95 group"
+          className="flex shrink-0 items-center gap-2 pr-4 border-r border-rose-500/20 text-sm font-semibold text-rose-200 hover:text-white transition-all active:scale-95 group"
           title="Click 5 times for a secret surprise!"
         >
-          <div className="w-7 h-7 rounded-full bg-rose-600/30 flex items-center justify-center group-hover:scale-110 transition-transform">
-            <Heart className="w-3.5 h-3.5 text-rose-400 fill-rose-400 animate-pulse" />
+          <div className="w-8 h-8 rounded-full bg-rose-600/30 flex items-center justify-center group-hover:scale-110 transition-transform">
+            <Heart className="w-4 h-4 text-rose-400 fill-rose-400 animate-pulse" />
           </div>
-          <span className="font-serif-romantic tracking-wide font-medium">Walter & You</span>
+          <span className="font-serif-romantic tracking-wide font-medium whitespace-nowrap">Walter & You</span>
         </button>
 
         {/* Section Links */}
-        <div className="flex items-center gap-1">
+        <div className="flex flex-1 items-center gap-1 min-w-0 overflow-x-auto no-scrollbar px-1 [justify-content:safe_center]">
           {navItems.map((item) => {
             const isActive = activeSection === item.id;
+            const Icon = item.icon;
             return (
               <button
                 key={item.id}
@@ -104,13 +105,13 @@ export const Navigation: React.FC<NavigationProps> = ({
                   romanticAudio.playHeartSound();
                   onNavigate(item.id);
                 }}
-                className={`relative px-3 py-1.5 rounded-full text-xs font-medium transition-all duration-300 flex items-center gap-1.5 ${
+                className={`relative px-2.5 xl:px-3 py-1.5 rounded-full text-xs font-medium transition-all duration-300 flex items-center gap-1.5 whitespace-nowrap ${
                   isActive
-                    ? 'bg-gradient-to-r from-rose-600 to-pink-600 text-white shadow-md shadow-rose-600/40 font-semibold scale-105'
+                    ? 'bg-gradient-to-r from-rose-600 to-pink-600 text-white shadow-md shadow-rose-600/40 font-semibold'
                     : 'text-rose-200/80 hover:text-white hover:bg-rose-950/40'
                 }`}
               >
-                <span>{item.emoji}</span>
+                <Icon className={`w-3.5 h-3.5 ${isActive ? 'text-white' : 'text-rose-300'}`} />
                 <span>{item.label}</span>
               </button>
             );
@@ -120,7 +121,7 @@ export const Navigation: React.FC<NavigationProps> = ({
         {/* Secret Shooting Star */}
         <button
           onClick={handleStarClick}
-          className="pl-2 border-l border-rose-500/20 text-amber-300 hover:text-amber-100 transition-colors p-1"
+          className="shrink-0 pl-4 border-l border-rose-500/20 text-amber-300 hover:text-amber-100 transition-colors p-1"
           title="Make a romantic wish upon a star!"
         >
           <Star className="w-4 h-4 fill-amber-400 text-amber-400 animate-pulse hover:rotate-45 transition-transform" />
